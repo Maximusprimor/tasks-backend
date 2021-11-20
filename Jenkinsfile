@@ -36,8 +36,10 @@ pipeline {
         }
         stage ('API Test') {
             steps {
-                git credentialsId: 'Github_login', url: 'https://github.com/Maximusprimor/tasks-api-tests.git'
-                bat 'mvn test'
+                dir('api-test') {
+                    git credentialsId: 'Github_login', url: 'https://github.com/Maximusprimor/tasks-api-tests.git'
+                    bat 'mvn test'
+                }
             }
         }          
     }
